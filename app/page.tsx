@@ -48,8 +48,8 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
 
-      {/* Hero Section with Profile Picture */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center px-4 md:px-6 pt-16 md:pt-20 overflow-hidden">
+      {/* Hero Section with Reduced Height on Mobile */}
+      <section id="home" className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center px-4 md:px-6 pt-12 md:pt-20 pb-8 md:pb-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-hero -z-10" />
         <div className="absolute inset-0 opacity-5 -z-10" 
              style={{
@@ -63,9 +63,9 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="mb-4 md:mb-8"
+            className="mb-3 md:mb-8"
           >
-            <div className="w-28 h-28 md:w-36 md:h-36 mx-auto rounded-full overflow-hidden border-4 border-white shadow-2xl bg-white">
+            <div className="w-24 h-24 md:w-36 md:h-36 mx-auto rounded-full overflow-hidden border-4 border-white shadow-2xl bg-white">
               <img
                 src="https://ui-avatars.com/api/?name=Mariam+Awokoya&background=6366f1&color=fff&size=200&bold=true&length=2&font-size=80"
                 alt={profile.name}
@@ -78,7 +78,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-2xl md:text-5xl font-bold mb-2 md:mb-3 text-gray-900"
+            className="text-xl md:text-5xl font-bold mb-1 md:mb-3 text-gray-900 px-2"
           >
             {profile.name}
           </motion.h1>
@@ -87,9 +87,9 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-base md:text-xl text-gray-800 font-medium mb-4 md:mb-6 px-2"
+            className="text-sm md:text-xl text-gray-800 font-medium mb-3 md:mb-6 px-2"
           >
-            <FaRocket className="inline-block mr-2 text-indigo-600" />
+            <FaRocket className="inline-block mr-1 md:mr-2 text-indigo-600 text-xs md:text-base" />
             {profile.title}
           </motion.p>
 
@@ -97,19 +97,19 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="flex flex-wrap justify-center gap-2 md:gap-4 text-gray-800 mb-6 md:mb-8"
+            className="flex flex-wrap justify-center gap-1.5 md:gap-4 text-gray-800 mb-4 md:mb-8"
           >
-            <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-md text-xs md:text-sm">
-              <FaMapMarkerAlt className="text-indigo-600" /> 
-              <span>{profile.contact.address}</span>
+            <div className="flex items-center gap-1.5 md:gap-2 bg-white/90 backdrop-blur-sm px-2 md:px-4 py-1 md:py-2 rounded-full shadow-md text-xs md:text-sm">
+              <FaMapMarkerAlt className="text-indigo-600 text-xs md:text-sm" /> 
+              <span className="text-xs md:text-sm">{profile.contact.address}</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-md text-xs md:text-sm">
-              <FaPhoneAlt className="text-indigo-600" /> 
-              <span>{profile.contact.phone}</span>
+            <div className="flex items-center gap-1.5 md:gap-2 bg-white/90 backdrop-blur-sm px-2 md:px-4 py-1 md:py-2 rounded-full shadow-md text-xs md:text-sm">
+              <FaPhoneAlt className="text-indigo-600 text-xs md:text-sm" /> 
+              <span className="text-xs md:text-sm">{profile.contact.phone}</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-md text-xs md:text-sm">
-              <FaEnvelope className="text-indigo-600" /> 
-              <span>{profile.contact.email}</span>
+            <div className="flex items-center gap-1.5 md:gap-2 bg-white/90 backdrop-blur-sm px-2 md:px-4 py-1 md:py-2 rounded-full shadow-md text-xs md:text-sm">
+              <FaEnvelope className="text-indigo-600 text-xs md:text-sm" /> 
+              <span className="text-xs md:text-sm">{profile.contact.email}</span>
             </div>
           </motion.div>
 
@@ -120,20 +120,52 @@ export default function Home() {
             className="flex justify-center gap-4"
           >
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ 
+                scale: 1.1,
+                boxShadow: "0px 0px 15px rgba(99, 102, 241, 0.5)",
+                transition: { duration: 0.2 }
+              }}
+              whileTap={{ 
+                scale: 0.95,
+                transition: { duration: 0.1 }
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                delay: 0.9,
+                type: "spring",
+                stiffness: 200,
+                damping: 15
+              }}
               onClick={handleDownloadResume}
-              className="px-4 md:px-5 py-2 md:py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-2 text-xs md:text-sm"
+              className="px-3 md:px-5 py-1.5 md:py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg font-semibold shadow-md hover:shadow-lg transition-all flex items-center gap-1.5 md:gap-2 text-xs md:text-sm relative overflow-hidden group"
             >
-              <FaDownload className="text-xs md:text-sm" /> Download Resume
+              {/* Ripple effect on hover */}
+              <motion.span
+                className="absolute inset-0 bg-white/20"
+                initial={{ scale: 0, opacity: 0 }}
+                whileHover={{ scale: 2, opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                style={{ borderRadius: "inherit" }}
+              />
+              <motion.div
+                animate={{ 
+                  rotate: [0, 360],
+                  transition: { duration: 0.5, delay: 0.9 }
+                }}
+              >
+                <FaDownload className="text-xs md:text-sm relative z-10" />
+              </motion.div>
+              <span className="relative z-10">Download Resume</span>
             </motion.button>
           </motion.div>
         </div>
 
+        {/* Scroll Indicator - Hidden on mobile to save space */}
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
         >
           <div className="w-6 h-10 border-2 border-white/60 rounded-full flex justify-center">
             <div className="w-1.5 h-3 bg-white/80 rounded-full mt-2 animate-bounce" />
